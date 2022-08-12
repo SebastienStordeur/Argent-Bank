@@ -4,7 +4,7 @@ import Navbar from "./Navbar/Navbar";
 
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <header id="header" className="header">
       <Navbar>
