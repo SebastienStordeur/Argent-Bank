@@ -4,6 +4,7 @@ interface InputI {
   type?: string;
   className?: string;
   id?: string;
+  ref?: any; //MutableRefObject<HTMLInputElement>;
 }
 
 const Input: React.FC<InputI> = (props: InputI) => {
@@ -12,8 +13,9 @@ const Input: React.FC<InputI> = (props: InputI) => {
       type={props.type || "text"}
       className={props.className || ""}
       id={props.id}
+      ref={props.ref}
     />
   );
 };
 
-export default Input;
+export default React.memo(Input);
