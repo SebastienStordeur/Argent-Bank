@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Homepage from "./pages/Homepage";
 import Loginpage from "./pages/Loginpage";
+import UserPage from "./pages/UserPage";
 
 const App: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/sign-in" element={<Loginpage />} />
+        <Route path="/user" element={<UserPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

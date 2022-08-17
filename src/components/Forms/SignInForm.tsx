@@ -1,16 +1,20 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
+
 import InputValidator from "./InputValidator/InputValidator";
 import Input from "../UI/Input";
 import { authActions } from "../../store/auth";
 import { loginHandler } from "../../services/callAPI";
+import { useNavigate } from "react-router-dom";
 
 const SignInForm: React.FC = () => {
   const enteredUsernameInputRef = useRef<HTMLInputElement>(null);
   const enteredPasswordInputRef = useRef<HTMLInputElement>(null);
   const rememberMeValueRef = useRef<HTMLInputElement>(null);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     //validation
@@ -24,6 +28,7 @@ const SignInForm: React.FC = () => {
     //sinon return
 
     //redirection
+    navigate("/user", { replace: true });
   };
   return (
     <form onSubmit={handleSubmit}>
