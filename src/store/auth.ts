@@ -38,6 +38,9 @@ const authSlice = createSlice({
       state.user.id = payload.id;
       state.user.displayableName = payload.name;
     },
+    storedToken(state) {
+      state.isAuthenticated = true;
+    },
     logout(state) {
       localStorage.removeItem("token");
       return (state = initialState);
