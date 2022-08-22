@@ -1,17 +1,22 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 interface ButtonI {
   className?: string;
   label?: string;
   children: React.ReactNode;
   type?: any;
+  onClick?: Dispatch<SetStateAction<boolean>>;
 }
 
 const Button: React.FC<ButtonI> = (props) => {
-  const { className, label, children } = props;
   return (
-    <button className={`${className}`} type="button" aria-label={label || ""}>
-      {children}
+    <button
+      className={`${props.className}`}
+      type="button"
+      aria-label={props.label || ""}
+      onClick={() => (props.onClick ? props.onClick(true) : null)}
+    >
+      {props.children}
     </button>
   );
 };

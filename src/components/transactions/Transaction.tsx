@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
+import EditForm from "../Forms/EditForm/EditForm";
 import Button from "../UI/Button";
 
 interface TransactionI {
@@ -9,6 +10,12 @@ interface TransactionI {
 }
 
 const Transaction: React.FC<TransactionI> = (props: TransactionI) => {
+  const [formIsShown, setFormIsShown] = useState<boolean>(false);
+
+  const toggleFormHandler = () => {
+    setFormIsShown(true);
+  };
+
   return (
     <section className="account">
       <div className="account-content-wrapper">

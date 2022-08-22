@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { authActions } from "../store/auth";
 import transactions from "../data/transactions.json";
 
 import Transaction from "../components/transactions/Transaction";
 import Button from "../components/UI/Button";
 
 const UserPage: React.FC = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    axios
+      .post(
+        "http://localhost:3001/api/v1/user/profile",
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        dispatch(
+          authActions.getProfile({
+            id: res.data.body.id,
+            name: `${res.data.body.firstName} ${res.data.body.lastName}`,
+            email: res.data.body.email,
+          })
+        );
+      });
+  }, [dispatch]);
+
   return (
     <main className="main bg-dark">
       <div className="header">

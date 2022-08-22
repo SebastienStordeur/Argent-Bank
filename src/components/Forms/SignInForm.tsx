@@ -15,12 +15,12 @@ const SignInForm: React.FC = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [token, setToken] = useState<string>("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    //validation
+    //validation forms a faire
+
     const formValues = {
       email: enteredUsernameInputRef.current?.value,
       password: enteredPasswordInputRef.current?.value,
@@ -32,18 +32,13 @@ const SignInForm: React.FC = () => {
         .then((res) => {
           if (res.status !== 200) return;
 
-          setToken(res.data.body.token);
-          dispatch(authActions.login("token"));
+          dispatch(authActions.login(res.data.body.token));
           navigate("/user", { replace: true });
-        });
+        })
+        .catch((error) => console.error(error));
 
       /* loginHandler(formValues, token); */
-      //si valid alors dispath
     } catch (error) {}
-
-    //sinon return
-
-    //redirection
   };
   return (
     <form onSubmit={handleSubmit}>

@@ -26,23 +26,18 @@ const authSlice = createSlice({
   reducers: {
     login(state, action: PayloadAction<any>) {
       const payload = action.payload;
-      console.log("pauload", action);
       localStorage.setItem("token", payload);
-      /*       state = {
-        token: "token",
-        isAuthenticated: true,
-        user: {
-          id: "",
-          displayableName: "",
-          email: "",
-        },
-      }; */
-      state.token = payload;
-      state.isAuthenticated = true;
-      state.user.id = "";
-      state.user.displayableName = "";
 
+      state.token = payload.token;
+      state.isAuthenticated = true;
       //Ajout de timer pour supprimer le token une fois sa date de validation expirée
+    },
+
+    getProfile(state, action: PayloadAction<any>) {
+      const payload = action.payload;
+      state.user.email = payload.email;
+      state.user.id = payload.id;
+      state.user.displayableName = payload.name;
     },
     logout(state) {
       localStorage.removeItem("token");

@@ -3,18 +3,21 @@ import { useSelector, useDispatch } from "react-redux";
 import Logo from "./Logo/Logo";
 import Navbar from "./Navbar/Navbar";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RootState } from "../../store/index";
 import { authActions } from "../../store/auth";
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const isAuthenticatedState = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
 
   const logoutHandler = () => {
     dispatch(authActions.logout());
+    navigate("/sign-in", { replace: true });
   };
 
   return (
