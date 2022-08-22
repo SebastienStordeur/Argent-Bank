@@ -32,7 +32,6 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       //Ajout de timer pour supprimer le token une fois sa date de validation expirée
     },
-
     getProfile(state, action: PayloadAction<any>) {
       const payload = action.payload;
       state.user.email = payload.email;

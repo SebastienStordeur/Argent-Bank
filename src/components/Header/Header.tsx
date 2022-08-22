@@ -14,6 +14,9 @@ const Header: React.FC = () => {
   const isAuthenticatedState = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
+  const firstName = useSelector(
+    (state: RootState) => state.auth.user.displayableName?.split(" ")[0]
+  );
 
   const logoutHandler = () => {
     dispatch(authActions.logout());
@@ -39,7 +42,7 @@ const Header: React.FC = () => {
             <>
               <Link to="/somewhereelse" className="main-nav-item">
                 <i className="fa fa-user-circle"></i>
-                Prénom
+                {firstName}
               </Link>
               <Link to="/" className="main-nav-item" onClick={logoutHandler}>
                 <i className="fa fa-sign-out"></i>
