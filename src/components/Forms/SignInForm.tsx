@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import axios from "axios";
 import { useDispatch } from "react-redux";
 
 import InputValidator from "./InputValidator/InputValidator";
 import Input from "../UI/Input";
 import { authActions } from "../../store/auth";
-import { loginHandler } from "../../services/callAPI";
+/* import { loginHandler } from "../../services/Login"; */
 import { useNavigate } from "react-router-dom";
 
 const SignInForm: React.FC = () => {
@@ -14,21 +15,35 @@ const SignInForm: React.FC = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [token, setToken] = useState<string>("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     //validation
     const formValues = {
       email: enteredUsernameInputRef.current?.value,
       password: enteredPasswordInputRef.current?.value,
     };
-    loginHandler(formValues);
-    //si valid alors dispath
-    dispatch(authActions.login("Logged in")); //placeholder =>tpoken
+
+    try {
+      axios
+        .post("http://localhost:3001/api/v1/user/login", formValues)
+        .then((res) => {
+          if (res.status !== 200) return;
+
+          setToken(res.data.body.token);
+          dispatch(authActions.login("token"));
+          navigate("/user", { replace: true });
+        });
+
+      /* loginHandler(formValues, token); */
+      //si valid alors dispath
+    } catch (error) {}
+
     //sinon return
 
     //redirection
-    navigate("/user", { replace: true });
   };
   return (
     <form onSubmit={handleSubmit}>

@@ -1,16 +1,22 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Logo from "./Logo/Logo";
 import Navbar from "./Navbar/Navbar";
 
 import { Link } from "react-router-dom";
 import { RootState } from "../../store/index";
+import { authActions } from "../../store/auth";
 
 const Header: React.FC = () => {
+  const dispatch = useDispatch();
   const isAuthenticatedState = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
-  console.log(isAuthenticatedState);
+
+  const logoutHandler = () => {
+    dispatch(authActions.logout());
+  };
+
   return (
     <>
       {/* <header id="header" className="header"> */}
@@ -32,7 +38,7 @@ const Header: React.FC = () => {
                 <i className="fa fa-user-circle"></i>
                 Prénom
               </Link>
-              <Link to="/" className="main-nav-item">
+              <Link to="/" className="main-nav-item" onClick={logoutHandler}>
                 <i className="fa fa-sign-out"></i>
                 Sign Out
               </Link>
