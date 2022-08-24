@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 
-import InputValidator from "./InputValidator/InputValidator";
-import Input from "../UI/Input";
-import { authActions } from "../../store/auth";
+import InputValidator from "../InputValidator/InputValidator";
+import Input from "../../UI/Input";
+import { authActions } from "../../../store/auth";
 /* import { loginHandler } from "../../services/Login"; */
 import { useNavigate } from "react-router-dom";
 
@@ -42,7 +42,7 @@ const SignInForm: React.FC = () => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <InputValidator className="input-wrapper">
+      <InputValidator className="input-wrapper wrappers">
         <label htmlFor="username">Username</label>
         <Input id="username" ref={enteredUsernameInputRef} />
       </InputValidator>

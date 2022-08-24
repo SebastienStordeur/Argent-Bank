@@ -29,18 +29,29 @@ const EditForm: React.FC = () => {
 
   return (
     <form onSubmit={submitHandler}>
-      <InputValidator className="input-wrapper">
-        <Input id="firstName" ref={firstNameInputRef} />
-      </InputValidator>
-      <InputValidator className="input-wrapper">
-        <Input id="lastname" ref={lastNameInputRef} />
-      </InputValidator>
-      <div>
-        <Button type="submit" label="Save modifications">
+      <div className="edit-form">
+        <InputValidator className="input-wrapper">
+          <Input
+            id="firstName"
+            ref={firstNameInputRef}
+            className="edit-input"
+          />
+        </InputValidator>
+        <InputValidator className="input-wrapper">
+          <Input id="lastname" ref={lastNameInputRef} className="edit-input" />
+        </InputValidator>
+      </div>
+      <div className="flex">
+        <Button
+          type="submit"
+          label="Save modifications"
+          className="edit-button"
+        >
           Save
         </Button>
-        <Button label="Cancel modifications">Cancel</Button>
-        <button type="submit">Envoyer</button>
+        <Button label="Cancel modifications" className="edit-button">
+          Cancel
+        </Button>
       </div>
     </form>
   );

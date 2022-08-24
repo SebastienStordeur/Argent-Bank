@@ -1,5 +1,5 @@
 import React from "react";
-import SignInForm from "../components/Forms/SignInForm";
+import SignInForm from "../components/Forms/SigninForm/SignInForm";
 
 const Loginpage: React.FC = () => {
   return (

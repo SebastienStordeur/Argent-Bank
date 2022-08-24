@@ -54,16 +54,18 @@ const UserPage: React.FC = () => {
         <h1>
           Welcome back <br></br> {displayableName}!
         </h1>
-        {isEditFormShown && <EditForm />}
-        {!isEditFormShown && (
-          <Button
-            className="edit-button"
-            label="Edit name button"
-            onClick={showFormHandler}
-          >
-            Edit Name
-          </Button>
-        )}
+        <section className="edit-section">
+          {isEditFormShown && <EditForm />}
+          {!isEditFormShown && (
+            <Button
+              className="edit-button"
+              label="Edit name button"
+              onClick={showFormHandler}
+            >
+              Edit Name
+            </Button>
+          )}
+        </section>
       </div>
       {isAuthenticated && (
         <div>
