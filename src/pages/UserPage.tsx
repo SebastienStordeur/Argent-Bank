@@ -55,7 +55,7 @@ const UserPage: React.FC = () => {
           Welcome back <br></br> {displayableName}!
         </h1>
         <section className="edit-section">
-          {isEditFormShown && <EditForm />}
+          {isEditFormShown && <EditForm setState={setIsEditFormShown} />}
           {!isEditFormShown && (
             <Button
               className="edit-button"

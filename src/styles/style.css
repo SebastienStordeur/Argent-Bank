@@ -294,6 +294,8 @@ body {
   width:40%;
   margin: auto;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 .edit-form {
   display: grid;
@@ -322,4 +324,13 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+@media (max-width:1000px) {
+  .edit-section {
+    width: 350px;
+  }
+  .edit-form {
+    grid-template-columns: 1fr;
+  }
 }

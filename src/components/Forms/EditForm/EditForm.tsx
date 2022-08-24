@@ -1,10 +1,14 @@
-import React, { useRef } from "react";
+import React, { Dispatch, SetStateAction, useRef } from "react";
 import Button from "../../UI/Button";
 import Input from "../../UI/Input";
 import InputValidator from "../InputValidator/InputValidator";
 import axios from "axios";
 
-const EditForm: React.FC = () => {
+interface EditFormI {
+  setState: Dispatch<SetStateAction<boolean>>;
+}
+
+const EditForm: React.FC<EditFormI> = (props) => {
   const firstNameInputRef = useRef<HTMLInputElement>(null);
   const lastNameInputRef = useRef<HTMLInputElement>(null);
   const token = localStorage.getItem("token");
@@ -35,10 +39,16 @@ const EditForm: React.FC = () => {
             id="firstName"
             ref={firstNameInputRef}
             className="edit-input"
+            placeholder="FirstName"
           />
         </InputValidator>
         <InputValidator className="input-wrapper">
-          <Input id="lastname" ref={lastNameInputRef} className="edit-input" />
+          <Input
+            id="lastname"
+            ref={lastNameInputRef}
+            className="edit-input"
+            placeholder="LastName"
+          />
         </InputValidator>
       </div>
       <div className="flex">
@@ -49,7 +59,11 @@ const EditForm: React.FC = () => {
         >
           Save
         </Button>
-        <Button label="Cancel modifications" className="edit-button">
+        <Button
+          label="Cancel modifications"
+          className="edit-button"
+          onClick={() => props.setState(false)}
+        >
           Cancel
         </Button>
       </div>

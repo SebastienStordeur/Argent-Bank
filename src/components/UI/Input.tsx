@@ -5,6 +5,7 @@ interface InputI {
   className?: string;
   id?: string;
   ref?: React.Ref<HTMLInputElement>;
+  placeholder?: string;
 }
 
 const Input: React.FC<InputI> = React.forwardRef((props: InputI, ref) => {
@@ -14,6 +15,7 @@ const Input: React.FC<InputI> = React.forwardRef((props: InputI, ref) => {
       className={props.className || ""}
       id={props.id}
       ref={ref}
+      placeholder={props.placeholder}
     />
   );
 });
