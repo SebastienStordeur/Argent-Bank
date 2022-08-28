@@ -5,7 +5,7 @@ interface InputValidatorI {
   className: string;
 }
 
-const InputValidator: React.FC<InputValidatorI> = (props: InputValidatorI) => {
+const InputValidator: React.FC<InputValidatorI> = (props) => {
   return <div className={props.className}>{props.children}</div>;
 };
 

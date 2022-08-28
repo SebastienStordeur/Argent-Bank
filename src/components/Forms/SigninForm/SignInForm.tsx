@@ -1,12 +1,11 @@
-import React, { useRef } from "react";
-import axios from "axios";
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { authActions } from "../../../store/auth";
+import axios from "axios";
 
 import InputValidator from "../InputValidator/InputValidator";
 import Input from "../../UI/Input";
-import { authActions } from "../../../store/auth";
-/* import { loginHandler } from "../../services/Login"; */
-import { useNavigate } from "react-router-dom";
 
 const SignInForm: React.FC = () => {
   const enteredUsernameInputRef = useRef<HTMLInputElement>(null);
@@ -16,10 +15,10 @@ const SignInForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [isUser, setIsUser] = useState<boolean>(true);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    //validation forms a faire
 
     const formValues = {
       email: enteredUsernameInputRef.current?.value,
@@ -32,12 +31,11 @@ const SignInForm: React.FC = () => {
         .then((res) => {
           if (res.status !== 200) return;
 
+          setIsUser(true);
           dispatch(authActions.login(res.data.body.token));
           navigate("/user", { replace: true });
         })
-        .catch((error) => console.error(error));
-
-      /* loginHandler(formValues, token); */
+        .catch(() => setIsUser(false));
     } catch (error) {}
   };
   return (
@@ -55,6 +53,10 @@ const SignInForm: React.FC = () => {
         <label htmlFor="remember-me">Remember me</label>
       </InputValidator>
       <button className="sign-in-button">Sign In</button>
+
+      {!isUser && (
+        <p className="login-error">Wrong email/password combination</p>
+      )}
     </form>
   );
 };

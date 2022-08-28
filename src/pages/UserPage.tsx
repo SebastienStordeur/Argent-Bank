@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { RootState } from "../store/index";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { authActions } from "../store/auth";
+
+import axios from "axios";
 import transactions from "../data/transactions.json";
 
 import Transaction from "../components/transactions/Transaction";
 import Button from "../components/UI/Button";
-import { RootState } from "../store/index";
 import EditForm from "../components/Forms/EditForm/EditForm";
 
 const UserPage: React.FC = () => {

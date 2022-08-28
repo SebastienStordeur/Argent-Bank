@@ -4,7 +4,7 @@ interface NavI {
   children: React.ReactNode;
 }
 
-const Navbar: React.FC<NavI> = (props: NavI) => {
+const Navbar: React.FC<NavI> = (props) => {
   return <nav className="main-nav">{props.children}</nav>;
 };
 

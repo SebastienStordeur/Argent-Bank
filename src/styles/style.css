@@ -344,3 +344,8 @@ body {
   font-size: 12px;
   font-weight: 700;
 }
+
+.login-error {
+  color: red;
+  font-weight: 700;
+}
