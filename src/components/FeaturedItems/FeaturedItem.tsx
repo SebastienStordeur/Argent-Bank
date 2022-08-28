@@ -6,7 +6,8 @@ interface FeaturedItemI {
   image: string;
 }
 
-const FeaturedItem: React.FC<FeaturedItemI> = (props: FeaturedItemI) => {
+const FeaturedItem: React.FC<FeaturedItemI> = (props) => {
+  console.log(props.image);
   return (
     <div className="feature-item">
       <img src={props.image} alt="icon" className="feature-icon" />

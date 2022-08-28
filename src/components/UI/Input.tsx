@@ -6,9 +6,12 @@ interface InputI {
   id?: string;
   ref?: React.Ref<HTMLInputElement>;
   placeholder?: string;
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: any;
 }
 
-const Input: React.FC<InputI> = React.forwardRef((props: InputI, ref) => {
+const Input: React.FC<InputI> = React.forwardRef((props, ref) => {
   return (
     <input
       type={props.type || "text"}
@@ -16,6 +19,9 @@ const Input: React.FC<InputI> = React.forwardRef((props: InputI, ref) => {
       id={props.id}
       ref={ref}
       placeholder={props.placeholder}
+      value={props.value}
+      onChange={props.onChange}
+      onBlur={props.onBlur}
     />
   );
 });

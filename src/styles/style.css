@@ -191,6 +191,7 @@ body {
   flex-direction: column;
   text-align: left;
   margin-bottom: 1rem;
+  position: relative;
 }
 
 .input-wrapper label {
@@ -333,4 +334,13 @@ body {
   .edit-form {
     grid-template-columns: 1fr;
   }
+}
+
+.error-input {
+  color: red;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 12px;
+  font-weight: 700;
 }

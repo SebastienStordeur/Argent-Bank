@@ -12,7 +12,7 @@ const Button: React.FC<ButtonI> = (props) => {
   return (
     <button
       className={`${props.className}`}
-      type="button"
+      type={props.type || "button"}
       aria-label={props.label || ""}
       onClick={() => (props.onClick ? props.onClick(true) : null)}
     >
