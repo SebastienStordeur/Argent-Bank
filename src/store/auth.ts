@@ -24,9 +24,10 @@ const authSlice = createSlice({
   reducers: {
     login(state, action: PayloadAction<any>) {
       const payload = action.payload;
-      localStorage.setItem("token", payload);
+      console.log(payload);
+      localStorage.setItem("token", payload.token);
+      localStorage.setItem("expirationTime", payload.expirationTime);
       state.isAuthenticated = true;
-      //Ajout de timer pour supprimer le token une fois sa date de validation expirée
     },
     getProfile(state, action: PayloadAction<any>) {
       const payload = action.payload;
@@ -34,11 +35,12 @@ const authSlice = createSlice({
       state.user.displayableName = payload.name;
       state.user.email = payload.email;
     },
-    storedToken(state) {
+    retrieveStoredToken(state) {
       state.isAuthenticated = true;
     },
     logout(state) {
       localStorage.removeItem("token");
+      localStorage.removeItem("expirationTime");
       return (state = initialState);
     },
   },

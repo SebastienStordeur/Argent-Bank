@@ -1,8 +1,9 @@
 import React, { Dispatch, SetStateAction } from "react";
+import axios from "axios";
+
 import Button from "../../UI/Button";
 import Input from "../../UI/Input";
 import InputValidator from "../InputValidator/InputValidator";
-import axios from "axios";
 import useInput from "../../../hooks/useInput";
 
 interface EditFormI {
@@ -52,19 +53,24 @@ const EditForm: React.FC<EditFormI> = (props) => {
       lastName: enteredName,
     };
 
-    axios
-      .put("http://localhost:3001/api/v1/user/profile", formValues, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      })
-      .then(() => {
-        resetFirstnameInput();
-        resetNameInput();
-        props.setState(false);
-      })
-      .catch((error) => console.error(error));
+    try {
+      axios
+        .put("http://localhost:3001/api/v1/user/profile", formValues, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        })
+        .then(() => {
+          resetFirstnameInput();
+          resetNameInput();
+          props.setState(false);
+          window.location.reload();
+        })
+        .catch((error) => console.error(error));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

@@ -12,7 +12,7 @@
 - `npm install` or `yarn install` to install dependancies
 - `npm start` or `yarn run start` to start the project
 
-## Technologies used
+## Technologies
 
 - React
 - Redux

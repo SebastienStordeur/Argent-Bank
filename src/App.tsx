@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -11,6 +17,7 @@ import { RootState } from "./store/index";
 
 const App: React.FC = () => {
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
@@ -18,11 +25,27 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (!token) return;
-    dispatch(authActions.storedToken());
-  }, [dispatch, token]);
+    const tokenCheckerHandler: () => void = () => {
+      const nowTime: number = new Date().getTime();
+      const storedExpirationTime: string | null =
+        localStorage.getItem("expirationTime");
+
+      if (storedExpirationTime !== null) {
+        const expirationDate: number = new Date(storedExpirationTime).getTime();
+        console.log(nowTime < expirationDate);
+        if (nowTime > expirationDate) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("expirationTime");
+          navigate("/");
+        } else dispatch(authActions.retrieveStoredToken());
+      }
+    };
+    tokenCheckerHandler();
+    /* dispatch(authActions.retrieveStoredToken()); */
+  }, [dispatch, token, navigate]);
 
   return (
-    <BrowserRouter>
+    <>
       <Header />
       <Routes>
         {!isAuthenticated && <Route path="/" element={<Homepage />} />}
@@ -40,7 +63,7 @@ const App: React.FC = () => {
         )}
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </>
   );
 };
 

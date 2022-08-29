@@ -31,8 +31,14 @@ const SignInForm: React.FC = () => {
         .then((res) => {
           if (res.status !== 200) return;
 
+          const expirationTime = new Date(new Date().getTime() + 10); //1day valid token
+          const payload = {
+            token: res.data.body.token,
+            expirationTime: expirationTime.toISOString(),
+          };
+
           setIsUser(true);
-          dispatch(authActions.login(res.data.body.token));
+          dispatch(authActions.login(payload));
           navigate("/user", { replace: true });
         })
         .catch(() => setIsUser(false));
