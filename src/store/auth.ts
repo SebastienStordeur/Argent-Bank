@@ -24,7 +24,7 @@ const authSlice = createSlice({
   reducers: {
     login(state, action: PayloadAction<any>) {
       const payload = action.payload;
-      console.log(payload);
+      console.log(payload.expirationTime);
       localStorage.setItem("token", payload.token);
       localStorage.setItem("expirationTime", payload.expirationTime);
       state.isAuthenticated = true;

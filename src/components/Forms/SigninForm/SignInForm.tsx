@@ -31,7 +31,7 @@ const SignInForm: React.FC = () => {
         .then((res) => {
           if (res.status !== 200) return;
 
-          const expirationTime = new Date(new Date().getTime() + 10); //1day valid token
+          const expirationTime = new Date(new Date().getTime() + 86400 * 1000); //1day valid token
           const payload = {
             token: res.data.body.token,
             expirationTime: expirationTime.toISOString(),
