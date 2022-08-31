@@ -8,7 +8,7 @@ interface InputI {
   placeholder?: string;
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: any;
+  onBlur?: () => void;
 }
 
 const Input: React.FC<InputI> = React.forwardRef((props, ref) => {

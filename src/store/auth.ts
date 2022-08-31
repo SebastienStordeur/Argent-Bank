@@ -9,6 +9,17 @@ type SliceState = {
   };
 };
 
+interface ILogin {
+  token: string;
+  expirationTime: string;
+}
+
+interface IProfile {
+  id: string;
+  name: string;
+  email: string;
+}
+
 const initialState: SliceState = {
   isAuthenticated: false,
   user: {
@@ -22,14 +33,13 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login(state, action: PayloadAction<any>) {
+    login(state, action: PayloadAction<ILogin>) {
       const payload = action.payload;
-      console.log(payload.expirationTime);
       localStorage.setItem("token", payload.token);
       localStorage.setItem("expirationTime", payload.expirationTime);
       state.isAuthenticated = true;
     },
-    getProfile(state, action: PayloadAction<any>) {
+    getProfile(state, action: PayloadAction<IProfile>) {
       const payload = action.payload;
       state.user.id = payload.id;
       state.user.displayableName = payload.name;
