@@ -4,7 +4,7 @@ interface ButtonI {
   className?: string;
   label?: string;
   children: React.ReactNode;
-  type?: "submit" | "reset" | "button" | undefined;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
   onClick?: Dispatch<SetStateAction<boolean>>;
 }
 
