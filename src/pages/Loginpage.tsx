@@ -1,7 +1,7 @@
-import React from "react";
+import { FC } from "react";
 import SignInForm from "../components/Forms/SigninForm/SignInForm";
 
-const Loginpage: React.FC = () => {
+const Loginpage: FC = () => {
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">

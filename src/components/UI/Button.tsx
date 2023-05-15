@@ -1,26 +1,17 @@
-import React, { ButtonHTMLAttributes, Dispatch, SetStateAction } from "react";
+import { ButtonHTMLAttributes, Dispatch, ReactNode, SetStateAction, memo } from "react";
 
-interface ButtonI {
-  className?: string;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
   label?: string;
-  children: React.ReactNode;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
-  onClick?: Dispatch<SetStateAction<boolean>>;
+  onClick?: () => Dispatch<SetStateAction<boolean>>;
 }
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
-
-const Button: React.FC<ButtonI> = (props) => {
+const Button: React.FC<ButtonProps> = ({ onClick, children, ...rest }) => {
   return (
-    <button
-      className={`${props.className}`}
-      type={props.type || "button"}
-      aria-label={props.label || ""}
-      onClick={() => (props.onClick ? props.onClick(true) : null)}
-    >
-      {props.children}
+    <button onClick={() => (onClick ? onClick : null)} {...rest}>
+      {children}
     </button>
   );
 };
 
-export default React.memo(Button);
+export default memo(Button);

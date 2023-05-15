@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { RootState } from "../store/index";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store/auth";
@@ -10,7 +10,7 @@ import Transaction from "../components/transactions/Transaction";
 import Button from "../components/UI/Button";
 import EditForm from "../components/Forms/EditForm/EditForm";
 
-const UserPage: React.FC = () => {
+const UserPage: FC = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
   const displayableName = useSelector((state: RootState) => state.auth.user.displayableName);
@@ -20,8 +20,8 @@ const UserPage: React.FC = () => {
 
   const showFormHandler = () => setIsEditFormShown(true);
 
-  useEffect(() => {
-    axios
+  const getProfile = async () => {
+    await axios
       .post(
         "http://localhost:3001/api/v1/user/profile",
         {},
@@ -41,7 +41,11 @@ const UserPage: React.FC = () => {
           })
         );
       });
-  }, [dispatch]);
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
 
   return (
     <main className="main bg-dark">
@@ -52,7 +56,7 @@ const UserPage: React.FC = () => {
         <section className="edit-section">
           {isEditFormShown && <EditForm setState={setIsEditFormShown} />}
           {!isEditFormShown && (
-            <Button className="edit-button" label="Edit name button" onClick={showFormHandler}>
+            <Button className="edit-button" label="Edit name button" onClick={() => showFormHandler}>
               Edit Name
             </Button>
           )}

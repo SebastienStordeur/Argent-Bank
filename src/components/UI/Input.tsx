@@ -1,31 +1,14 @@
 import React, { InputHTMLAttributes } from "react";
 
-interface InputI {
-  type?: string;
-  className?: string;
-  id?: string;
-  ref?: React.Ref<HTMLInputElement>;
-  placeholder?: string;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
+  ref?: React.Ref<HTMLInputElement>;
 }
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
-
-const Input: React.FC<InputI> = React.forwardRef((props, ref) => {
-  return (
-    <input
-      type={props.type || "text"}
-      className={props.className || ""}
-      id={props.id}
-      ref={ref}
-      placeholder={props.placeholder}
-      value={props.value}
-      onChange={props.onChange}
-      onBlur={props.onBlur}
-    />
-  );
+const Input: React.FC<InputProps> = React.forwardRef(({ value, onChange, onBlur, ...rest }, ref) => {
+  return <input ref={ref} value={value} onChange={onChange} onBlur={onBlur} {...rest} />;
 });
 
 export default React.memo(Input);
