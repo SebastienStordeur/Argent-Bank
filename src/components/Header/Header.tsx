@@ -33,24 +33,6 @@ const Header: FC = () => {
             Sign Out
           </Link>
         )}
-        {/*         {!isAuthenticated && (
-          <Link to="/sign-in" className="main-nav-item">
-            <i className="fa fa-user-circle"></i>
-            Sign in
-          </Link>
-        )} */}
-        {isAuthenticated && (
-          <>
-            {/*             <Link to="/user" className="main-nav-item">
-              <i className="fa fa-user-circle"></i>
-              {firstName}
-            </Link> */}
-            <Link to="/" className="main-nav-item" onClick={logoutHandler}>
-              <i className="fa fa-sign-out"></i>
-              Sign Out
-            </Link>
-          </>
-        )}
       </div>
     </Navbar>
   );

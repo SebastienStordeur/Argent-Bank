@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, Dispatch, ReactNode, SetStateAction, memo } from "react";
+import { ButtonHTMLAttributes, Dispatch, FC, ReactNode, SetStateAction, memo } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -6,7 +6,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => Dispatch<SetStateAction<boolean>>;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, children, ...rest }) => {
+const Button: FC<ButtonProps> = ({ onClick, children, ...rest }) => {
   return (
     <button onClick={() => (onClick ? onClick : null)} {...rest}>
       {children}

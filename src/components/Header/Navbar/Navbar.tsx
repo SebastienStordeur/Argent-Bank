@@ -1,10 +1,10 @@
-import React from "react";
+import { FC } from "react";
 
 interface NavI {
   children: React.ReactNode;
 }
 
-const Navbar: React.FC<NavI> = (props) => {
+const Navbar: FC<NavI> = (props) => {
   return <nav className="main-nav">{props.children}</nav>;
 };
 

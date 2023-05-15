@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 
 import Button from "../UI/Button";
 
@@ -8,7 +8,7 @@ interface TransactionProps {
   state: string;
 }
 
-const Transaction: React.FC<TransactionProps> = ({ title, amount, state }) => {
+const Transaction: FC<TransactionProps> = ({ title, amount, state }) => {
   return (
     <section className="account">
       <div className="account-content-wrapper">

@@ -13,8 +13,7 @@ interface EditFormI {
 const letterRegex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
 
 const isNotEmpty: any = (value: string) => value.trim() !== "";
-const isValidName: any = (value: string) =>
-  letterRegex.test(value) && isNotEmpty && value.length >= 3;
+const isValidName: any = (value: string) => letterRegex.test(value) && isNotEmpty && value.length >= 3;
 
 const EditForm: React.FC<EditFormI> = (props) => {
   const {
@@ -85,35 +84,18 @@ const EditForm: React.FC<EditFormI> = (props) => {
             onChange={firstnameChangeHandler}
             onBlur={firstnameBlurHandler}
           />
-          {firstnameInputHasError && (
-            <p className="error-input">Invalid field</p>
-          )}
+          {firstnameInputHasError && <p className="error-input">Invalid field</p>}
         </InputValidator>
         <InputValidator className="input-wrapper">
-          <Input
-            id="lastname"
-            className="edit-input"
-            placeholder="LastName"
-            value={enteredName}
-            onChange={nameChangeHandler}
-            onBlur={nameBlurHandler}
-          />
+          <Input id="lastname" className="edit-input" placeholder="LastName" value={enteredName} onChange={nameChangeHandler} onBlur={nameBlurHandler} />
           {nameInputHasError && <p className="error-input">Invalid field</p>}
         </InputValidator>
       </div>
       <div className="flex">
-        <Button
-          type="submit"
-          label="Save modifications"
-          className="edit-button"
-        >
+        <Button type="submit" label="Save modifications" className="edit-button">
           Save
         </Button>
-        <Button
-          label="Cancel modifications"
-          className="edit-button"
-          onClick={() => props.setState(false)}
-        >
+        <Button label="Cancel modifications" className="edit-button" onClick={() => props.setState(false)}>
           Cancel
         </Button>
       </div>
