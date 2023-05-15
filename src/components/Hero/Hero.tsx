@@ -1,7 +1,7 @@
-import React from "react";
+import { FC } from "react";
 import HeroContent from "./HeroContent";
 
-const Hero: React.FC = () => {
+const Hero: FC = () => {
   return (
     <div className="hero">
       <HeroContent />

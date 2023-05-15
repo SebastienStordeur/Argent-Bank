@@ -2,19 +2,19 @@ import React from "react";
 
 import Button from "../UI/Button";
 
-interface TransactionI {
+interface TransactionProps {
   title: string;
   amount: string;
   state: string;
 }
 
-const Transaction: React.FC<TransactionI> = (props) => {
+const Transaction: React.FC<TransactionProps> = ({ title, amount, state }) => {
   return (
     <section className="account">
       <div className="account-content-wrapper">
-        <h3 className="account-title">{props.title}</h3>
-        <p className="account-amount">{props.amount}</p>
-        <p className="acount-amount-description">{props.state}</p>
+        <h3 className="account-title">{title}</h3>
+        <p className="account-amount">{amount}</p>
+        <p className="acount-amount-description">{state}</p>
       </div>
       <div className="account-content-wrapper cta">
         <Button className="transaction-button" label="View transaction button">

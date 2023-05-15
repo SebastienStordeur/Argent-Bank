@@ -1,6 +1,6 @@
-import React from "react";
+import { FC } from "react";
 
-const HeroContent: React.FC = () => {
+const HeroContent: FC = () => {
   return (
     <section className="hero-content">
       <h2 className="sr-only">Promoted Content</h2>

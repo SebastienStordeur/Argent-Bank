@@ -12,21 +12,15 @@ import EditForm from "../components/Forms/EditForm/EditForm";
 
 const UserPage: React.FC = () => {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector(
-    (state: RootState) => state.auth.isAuthenticated
-  );
-  const displayableName = useSelector(
-    (state: RootState) => state.auth.user.displayableName
-  );
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+  const displayableName = useSelector((state: RootState) => state.auth.user.displayableName);
+  const token = localStorage.getItem("token");
 
   const [isEditFormShown, setIsEditFormShown] = useState<boolean>(false);
 
-  const showFormHandler = () => {
-    setIsEditFormShown(true);
-  };
+  const showFormHandler = () => setIsEditFormShown(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     axios
       .post(
         "http://localhost:3001/api/v1/user/profile",
@@ -58,11 +52,7 @@ const UserPage: React.FC = () => {
         <section className="edit-section">
           {isEditFormShown && <EditForm setState={setIsEditFormShown} />}
           {!isEditFormShown && (
-            <Button
-              className="edit-button"
-              label="Edit name button"
-              onClick={showFormHandler}
-            >
+            <Button className="edit-button" label="Edit name button" onClick={showFormHandler}>
               Edit Name
             </Button>
           )}
@@ -71,9 +61,7 @@ const UserPage: React.FC = () => {
       {isAuthenticated && (
         <div>
           {transactions.map((transaction) => {
-            return (
-              <Transaction {...transaction} key={Math.random().toString()} />
-            );
+            return <Transaction {...transaction} key={Math.random().toString()} />;
           })}
         </div>
       )}

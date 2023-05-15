@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { ButtonHTMLAttributes, Dispatch, SetStateAction } from "react";
 
 interface ButtonI {
   className?: string;
@@ -7,6 +7,8 @@ interface ButtonI {
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
   onClick?: Dispatch<SetStateAction<boolean>>;
 }
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
 const Button: React.FC<ButtonI> = (props) => {
   return (

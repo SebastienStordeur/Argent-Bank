@@ -1,4 +1,4 @@
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 
 interface InputI {
   type?: string;
@@ -10,6 +10,8 @@ interface InputI {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
 }
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
 const Input: React.FC<InputI> = React.forwardRef((props, ref) => {
   return (

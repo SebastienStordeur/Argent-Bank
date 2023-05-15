@@ -1,6 +1,6 @@
-import React from "react";
+import { FC } from "react";
 
-const Footer: React.FC = () => {
+const Footer: FC = () => {
   return (
     <footer id="footer" className="footer">
       <p className="footer-text">Copyright 2020 Argent Bank</p>

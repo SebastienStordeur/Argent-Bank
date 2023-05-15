@@ -1,8 +1,13 @@
-import React from "react";
+import { FC } from "react";
 import LogoBank from "../../../assets/argentBankLogo.png";
+import { Link } from "react-router-dom";
 
-const Logo: React.FC = () => {
-  return <img src={LogoBank} alt="Logo" className="main-nav-logo-image" />;
+const Logo: FC = () => {
+  return (
+    <Link to="/" className="main-nav-logo">
+      <img src={LogoBank} alt="Logo" className="main-nav-logo-image" />
+    </Link>
+  );
 };
 
 export default Logo;
